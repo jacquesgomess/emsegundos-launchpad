@@ -5,6 +5,7 @@ import { PostCard } from "@/components/site/PostCard";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { listCategories, listPublishedPosts } from "@/lib/blog.functions";
+import type { Category, PostSummary } from "@/lib/blog.types";
 import { SITE, siteUrl } from "@/lib/site";
 
 const CATEGORY_ICONS: Record<string, typeof Wrench> = {
@@ -29,7 +30,11 @@ const SERIES = [
 ];
 
 export const Route = createFileRoute("/")({
-  loader: async () => {
+  loader: async (): Promise<{
+    categories: Category[];
+    featured: PostSummary | null;
+    recent: PostSummary[];
+  }> => {
     const [categories, featured, recent] = await Promise.all([
       listCategories(),
       listPublishedPosts({ data: { featured: true, limit: 1 } }),
