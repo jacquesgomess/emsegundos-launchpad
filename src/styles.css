@@ -164,5 +164,119 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-teal);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@utility article-prose {
+  color: var(--color-foreground);
+  line-height: 1.75;
+
+  & > * + * {
+    margin-top: 1.15rem;
+  }
+  & h2 {
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    scroll-margin-top: 6rem;
+  }
+  & h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    scroll-margin-top: 6rem;
+  }
+  & a {
+    color: var(--color-brand-teal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  & ul,
+  & ol {
+    padding-left: 1.5rem;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li + li {
+    margin-top: 0.4rem;
+  }
+  & blockquote {
+    border-left: 4px solid var(--color-brand-teal);
+    padding: 0.75rem 1rem;
+    background: var(--color-muted);
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: var(--color-muted-foreground);
+  }
+  & code {
+    background: var(--color-muted);
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.3rem;
+    font-size: 0.9em;
+  }
+  & pre {
+    background: var(--color-brand-navy);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+  & pre code {
+    background: transparent;
+    padding: 0;
+  }
+  & img {
+    border-radius: 0.75rem;
+    max-width: 100%;
+    height: auto;
+  }
+  & hr {
+    border-top: 1px solid var(--color-border);
   }
 }
