@@ -77,7 +77,11 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { categories, featured, recent } = Route.useLoaderData();
+  const { categories, featured, recent } = Route.useLoaderData() as {
+    categories: Category[];
+    featured: PostSummary | null;
+    recent: PostSummary[];
+  };
   const rest = recent.filter((post) => post.id !== featured?.id).slice(0, 6);
 
   return (
