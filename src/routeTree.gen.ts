@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AvisoDeAfiliadosRouteImport } from './routes/aviso-de-afiliados'
 import { Route as ComoPesquisamosRouteImport } from './routes/como-pesquisamos'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as SobreRouteImport } from './routes/sobre'
@@ -32,6 +33,11 @@ const AvisoDeAfiliadosRoute = AvisoDeAfiliadosRouteImport.update({
 const ComoPesquisamosRoute = ComoPesquisamosRouteImport.update({
   id: '/como-pesquisamos',
   path: '/como-pesquisamos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
+    | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
+    | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
+    | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvisoDeAfiliadosRoute: typeof AvisoDeAfiliadosRoute
   ComoPesquisamosRoute: typeof ComoPesquisamosRoute
+  ContatoRoute: typeof ContatoRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreRoute: typeof SobreRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/como-pesquisamos'
       fullPath: '/como-pesquisamos'
       preLoaderRoute: typeof ComoPesquisamosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-cookies': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvisoDeAfiliadosRoute: AvisoDeAfiliadosRoute,
   ComoPesquisamosRoute: ComoPesquisamosRoute,
+  ContatoRoute: ContatoRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreRoute: SobreRoute,
