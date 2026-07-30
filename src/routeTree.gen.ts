@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AvisoDeAfiliadosRouteImport } from './routes/aviso-de-afiliados'
 import { Route as ComoPesquisamosRouteImport } from './routes/como-pesquisamos'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
@@ -21,6 +22,11 @@ import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvisoDeAfiliadosRoute = AvisoDeAfiliadosRouteImport.update({
+  id: '/aviso-de-afiliados',
+  path: '/aviso-de-afiliados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComoPesquisamosRoute = ComoPesquisamosRouteImport.update({
@@ -61,6 +67,7 @@ const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvisoDeAfiliadosRoute: typeof AvisoDeAfiliadosRoute
   ComoPesquisamosRoute: typeof ComoPesquisamosRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aviso-de-afiliados': {
+      id: '/aviso-de-afiliados'
+      path: '/aviso-de-afiliados'
+      fullPath: '/aviso-de-afiliados'
+      preLoaderRoute: typeof AvisoDeAfiliadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/como-pesquisamos': {
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvisoDeAfiliadosRoute: AvisoDeAfiliadosRoute,
   ComoPesquisamosRoute: ComoPesquisamosRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
