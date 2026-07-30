@@ -15,6 +15,7 @@ import { Route as ComoPesquisamosRouteImport } from './routes/como-pesquisamos'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ArtigosIndexRouteImport } from './routes/artigos.index'
 import { Route as ArtigosSlugRouteImport } from './routes/artigos.$slug'
@@ -50,6 +51,11 @@ const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/sobre'
     | '/artigos/$slug'
     | '/categoria/$slug'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/sobre'
     | '/artigos/$slug'
     | '/categoria/$slug'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/sobre'
     | '/artigos/$slug'
     | '/categoria/$slug'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   ArtigosSlugRoute: typeof ArtigosSlugRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre': {
       id: '/sobre'
       path: '/sobre'
@@ -242,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   ArtigosSlugRoute: ArtigosSlugRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
