@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ComoPesquisamosRouteImport } from './routes/como-pesquisamos'
+import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ArtigosIndexRouteImport } from './routes/artigos.index'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const ComoPesquisamosRoute = ComoPesquisamosRouteImport.update({
   id: '/como-pesquisamos',
   path: '/como-pesquisamos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
+  id: '/politica-de-cookies',
+  path: '/politica-de-cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -56,6 +62,7 @@ const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/como-pesquisamos'
+    | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
     | '/artigos/$slug'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/como-pesquisamos'
+    | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
     | '/artigos/$slug'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/como-pesquisamos'
+    | '/politica-de-cookies'
     | '/politica-de-privacidade'
     | '/sobre'
     | '/artigos/$slug'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComoPesquisamosRoute: typeof ComoPesquisamosRoute
+  PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreRoute: typeof SobreRoute
   ArtigosSlugRoute: typeof ArtigosSlugRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/como-pesquisamos'
       fullPath: '/como-pesquisamos'
       preLoaderRoute: typeof ComoPesquisamosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-cookies': {
+      id: '/politica-de-cookies'
+      path: '/politica-de-cookies'
+      fullPath: '/politica-de-cookies'
+      preLoaderRoute: typeof PoliticaDeCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComoPesquisamosRoute: ComoPesquisamosRoute,
+  PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreRoute: SobreRoute,
   ArtigosSlugRoute: ArtigosSlugRoute,
