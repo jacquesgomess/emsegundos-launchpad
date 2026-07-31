@@ -17,7 +17,10 @@ export const Route = createFileRoute("/artigos/$slug")({
   head: ({ params, loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: `Artigo indisponível — ${SITE.name}` }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: `Artigo indisponível — ${SITE.name}` },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
     const post = loaderData.post;
@@ -258,7 +261,10 @@ function PostPage() {
         ) : null}
 
         {post.sources.length > 0 ? (
-          <section className="mt-10 rounded-2xl border border-border bg-card p-6" aria-labelledby="fontes">
+          <section
+            className="mt-10 rounded-2xl border border-border bg-card p-6"
+            aria-labelledby="fontes"
+          >
             <h2 id="fontes" className="text-lg font-extrabold text-foreground">
               Fontes consultadas
             </h2>
@@ -284,7 +290,10 @@ function PostPage() {
         ) : null}
 
         <section className="mt-10" aria-labelledby="compartilhar">
-          <h2 id="compartilhar" className="text-sm font-bold tracking-wide text-muted-foreground uppercase">
+          <h2
+            id="compartilhar"
+            className="text-sm font-bold tracking-wide text-muted-foreground uppercase"
+          >
             Compartilhar
           </h2>
           <ul className="mt-3 flex flex-wrap gap-4 text-sm font-bold">

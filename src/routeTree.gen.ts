@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AvisoDeAfiliadosRouteImport } from './routes/aviso-de-afiliados'
 import { Route as ComoPesquisamosRouteImport } from './routes/como-pesquisamos'
 import { Route as ContatoRouteImport } from './routes/contato'
@@ -17,6 +19,8 @@ import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cook
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ArtigosIndexRouteImport } from './routes/artigos.index'
 import { Route as ArtigosSlugRouteImport } from './routes/artigos.$slug'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
@@ -24,6 +28,16 @@ import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AvisoDeAfiliadosRoute = AvisoDeAfiliadosRouteImport.update({
@@ -61,6 +75,16 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ArtigosIndexRoute = ArtigosIndexRouteImport.update({
   id: '/artigos/',
   path: '/artigos/',
@@ -79,6 +103,8 @@ const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/admin': typeof AdminRouteWithChildren
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/contato': typeof ContatoRoute
@@ -86,12 +112,15 @@ export interface FileRoutesByFullPath {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/artigos/': typeof ArtigosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/contato': typeof ContatoRoute
@@ -99,13 +128,17 @@ export interface FileRoutesByTo {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/artigos': typeof ArtigosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/admin': typeof AdminRouteWithChildren
   '/aviso-de-afiliados': typeof AvisoDeAfiliadosRoute
   '/como-pesquisamos': typeof ComoPesquisamosRoute
   '/contato': typeof ContatoRoute
@@ -113,14 +146,18 @@ export interface FileRoutesById {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/admin/login': typeof AdminLoginRoute
   '/artigos/$slug': typeof ArtigosSlugRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/artigos/': typeof ArtigosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
+    | '/admin'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/contato'
@@ -128,12 +165,15 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/sobre'
+    | '/admin/login'
     | '/artigos/$slug'
     | '/categoria/$slug'
+    | '/admin/'
     | '/artigos/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/contato'
@@ -141,12 +181,16 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/sobre'
+    | '/admin/login'
     | '/artigos/$slug'
     | '/categoria/$slug'
+    | '/admin'
     | '/artigos'
   id:
     | '__root__'
     | '/'
+    | '/$'
+    | '/admin'
     | '/aviso-de-afiliados'
     | '/como-pesquisamos'
     | '/contato'
@@ -154,13 +198,17 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/sitemap.xml'
     | '/sobre'
+    | '/admin/login'
     | '/artigos/$slug'
     | '/categoria/$slug'
+    | '/admin/'
     | '/artigos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AvisoDeAfiliadosRoute: typeof AvisoDeAfiliadosRoute
   ComoPesquisamosRoute: typeof ComoPesquisamosRoute
   ContatoRoute: typeof ContatoRoute
@@ -180,6 +228,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aviso-de-afiliados': {
@@ -231,6 +293,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/artigos/': {
       id: '/artigos/'
       path: '/artigos'
@@ -255,8 +331,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
+  AdminRoute: AdminRouteWithChildren,
   AvisoDeAfiliadosRoute: AvisoDeAfiliadosRoute,
   ComoPesquisamosRoute: ComoPesquisamosRoute,
   ContatoRoute: ContatoRoute,
@@ -271,3 +361,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

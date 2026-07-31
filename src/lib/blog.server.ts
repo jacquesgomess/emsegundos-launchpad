@@ -39,7 +39,6 @@ function toSummary(row: Record<string, unknown>): PostSummary {
   };
 }
 
-
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(255),
@@ -48,6 +47,5 @@ const contactSchema = z.object({
   website: z.string().max(200).optional(),
   elapsedMs: z.number().optional(),
 });
-
 
 export { listSchema, contactSchema, toSummary };

@@ -57,6 +57,17 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE.name,
+          url: siteUrl("/"),
+          description: SITE.description,
+          inLanguage: "pt-BR",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "Organization",
           name: SITE.name,
           url: siteUrl("/"),
@@ -166,7 +177,10 @@ function Index() {
           <h2 id="recentes" className="text-2xl font-extrabold text-foreground">
             Artigos recentes
           </h2>
-          <Link to="/artigos" className="text-sm font-bold text-brand-navy underline-offset-4 hover:underline">
+          <Link
+            to="/artigos"
+            className="text-sm font-bold text-brand-navy underline-offset-4 hover:underline"
+          >
             Ver todos os artigos
           </Link>
         </div>

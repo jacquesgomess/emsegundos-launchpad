@@ -77,7 +77,7 @@ function ArtigosPage() {
     total: number;
   };
   const search = Route.useSearch();
-  const navigate = useNavigate({ from: "/artigos" });
+  const navigate = useNavigate({ from: "/artigos/" });
   const [term, setTerm] = useState(search.q ?? "");
 
   useEffect(() => {
@@ -128,7 +128,10 @@ function ArtigosPage() {
         </form>
 
         <div className="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoria">
-          <FilterChip active={!search.categoria} to={{ ...search, categoria: undefined, pagina: undefined }}>
+          <FilterChip
+            active={!search.categoria}
+            to={{ ...search, categoria: undefined, pagina: undefined }}
+          >
             Todas
           </FilterChip>
           {categories.map((category) => (

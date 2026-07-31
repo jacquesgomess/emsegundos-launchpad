@@ -156,19 +156,10 @@ function ContatoPage() {
         </form>
 
         <aside className="h-fit rounded-2xl border border-border bg-card p-6">
-          <h2 className="text-lg font-extrabold text-foreground">Outras formas de falar</h2>
+          <h2 className="text-lg font-extrabold text-foreground">Como enviar uma correção</h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Prefere e-mail? Escreva para{" "}
-            <a
-              href={`mailto:${SITE.contactEmail}`}
-              className="font-bold text-brand-navy underline underline-offset-4"
-            >
-              {SITE.contactEmail}
-            </a>
-            .
-          </p>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Para correções, informe o endereço do artigo e o trecho que precisa de ajuste.
+            Informe no formulário o endereço do artigo, o trecho que precisa de ajuste e, quando
+            possível, uma fonte confiável para conferência.
           </p>
         </aside>
       </div>

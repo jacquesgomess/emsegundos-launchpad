@@ -213,3 +213,38 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Configuração para publicação
+
+Defina estas variáveis no ambiente de hospedagem/Lovable Cloud:
+
+```text
+VITE_SUPABASE_URL
+VITE_SUPABASE_PUBLISHABLE_KEY
+SUPABASE_URL
+SUPABASE_PUBLISHABLE_KEY
+SUPABASE_SERVICE_ROLE_KEY
+VITE_SITE_URL
+```
+
+`VITE_SITE_URL` deve conter o domínio definitivo com `https://` e sem barra no final.
+
+### Primeiro administrador
+
+O painel não oferece cadastro público. Para criar o primeiro acesso:
+
+1. Em Supabase → Authentication → Users, crie o usuário com e-mail e senha forte.
+2. Copie o UUID desse usuário.
+3. No SQL Editor do Supabase, execute substituindo o valor:
+
+```sql
+INSERT INTO public.user_roles (user_id, role)
+VALUES ('UUID_DO_USUARIO', 'admin')
+ON CONFLICT (user_id, role) DO NOTHING;
+```
+
+4. Aplique todas as migrações, incluindo
+   `20260730190000_admin_panel_storage.sql`.
+5. Entre em `/admin/login`.
+
+Nunca coloque a service role key em uma variável iniciada por `VITE_`.

@@ -48,7 +48,10 @@ export function Footer() {
           </h2>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link to="/sobre" className="text-white/80 underline-offset-4 hover:text-white hover:underline">
+              <Link
+                to="/sobre"
+                className="text-white/80 underline-offset-4 hover:text-white hover:underline"
+              >
                 Sobre
               </Link>
             </li>
@@ -61,7 +64,10 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/contato" className="text-white/80 underline-offset-4 hover:text-white hover:underline">
+              <Link
+                to="/contato"
+                className="text-white/80 underline-offset-4 hover:text-white hover:underline"
+              >
                 Contato
               </Link>
             </li>
@@ -101,7 +107,10 @@ export function Footer() {
           </p>
           <p>
             Alguns conteúdos podem incluir links de afiliados, sempre identificados.{" "}
-            <Link to="/aviso-de-afiliados" className="underline underline-offset-4 hover:text-white">
+            <Link
+              to="/aviso-de-afiliados"
+              className="underline underline-offset-4 hover:text-white"
+            >
               Saiba mais
             </Link>
             .

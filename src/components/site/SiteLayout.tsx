@@ -37,7 +37,9 @@ export function PageHeader({
       <div className="container-page py-10 md:py-14">
         {children}
         {eyebrow ? (
-          <p className="mt-4 text-xs font-bold tracking-wide text-brand-teal uppercase">{eyebrow}</p>
+          <p className="mt-4 text-xs font-bold tracking-wide text-brand-teal uppercase">
+            {eyebrow}
+          </p>
         ) : null}
         <h1 className="mt-2 max-w-3xl text-3xl font-extrabold text-foreground md:text-4xl">
           {title}

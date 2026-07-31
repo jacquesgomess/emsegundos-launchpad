@@ -38,7 +38,7 @@ export const Route = createFileRoute("/aviso-de-afiliados")({
       </p>
       <h2>Dúvidas</h2>
       <p>
-        Escreva para <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        Envie sua dúvida pelo <a href="/contato">formulário de contato</a>.
       </p>
     </ContentPage>
   ),

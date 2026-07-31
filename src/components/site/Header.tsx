@@ -7,10 +7,14 @@ import { Button } from "@/components/ui/button";
 
 const NAV = [
   { to: "/", label: "Início", exact: true },
-  { to: "/artigos", label: "Artigos" },
-  { to: "/categoria/casa-pratica", label: "Casa Prática" },
-  { to: "/categoria/tecnologia-em-casa", label: "Tecnologia em Casa" },
-  { to: "/categoria/vida-digital", label: "Vida Digital" },
+  { to: "/artigos" as const, label: "Artigos" },
+  { to: "/categoria/$slug" as const, params: { slug: "casa-pratica" }, label: "Casa Prática" },
+  {
+    to: "/categoria/$slug" as const,
+    params: { slug: "tecnologia-em-casa" },
+    label: "Tecnologia em Casa",
+  },
+  { to: "/categoria/$slug" as const, params: { slug: "vida-digital" }, label: "Vida Digital" },
   { to: "/sobre", label: "Sobre" },
 ] as const;
 
@@ -29,6 +33,7 @@ export function Header() {
             <Link
               key={item.to}
               to={item.to}
+              params={"params" in item ? item.params : undefined}
               activeOptions={{ exact: "exact" in item ? item.exact : false }}
               className="rounded-md px-3 py-2 text-sm font-bold text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-foreground"
             >
@@ -56,11 +61,15 @@ export function Header() {
 
       {open ? (
         <div id="menu-mobile" className="border-t border-border bg-card lg:hidden">
-          <nav aria-label="Navegação principal (celular)" className="container-page flex flex-col py-2">
+          <nav
+            aria-label="Navegação principal (celular)"
+            className="container-page flex flex-col py-2"
+          >
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
+                params={"params" in item ? item.params : undefined}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-2 py-3 text-base font-bold text-foreground"
               >

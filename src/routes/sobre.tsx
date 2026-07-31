@@ -50,8 +50,8 @@ export const Route = createFileRoute("/sobre")({
       </ul>
       <h2>Falar com a equipe</h2>
       <p>
-        Sugestões, correções e dúvidas podem ser enviadas pelo formulário da página de contato ou
-        para <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        Sugestões, correções e dúvidas podem ser enviadas pelo{" "}
+        <a href="/contato">formulário da página de contato</a>.
       </p>
     </ContentPage>
   ),

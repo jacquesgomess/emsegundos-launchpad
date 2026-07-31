@@ -26,7 +26,9 @@ export function PostCard({ post, featured = false }: { post: PostSummary; featur
             height={450}
             loading="lazy"
             decoding="async"
-            className={featured ? "h-full w-full object-cover" : "aspect-[16/9] w-full object-cover"}
+            className={
+              featured ? "h-full w-full object-cover" : "aspect-[16/9] w-full object-cover"
+            }
           />
         ) : (
           <div
@@ -55,7 +57,9 @@ export function PostCard({ post, featured = false }: { post: PostSummary; featur
           ) : null}
         </div>
 
-        <h3 className={`mt-3 font-extrabold text-foreground ${featured ? "text-2xl md:text-3xl" : "text-lg"}`}>
+        <h3
+          className={`mt-3 font-extrabold text-foreground ${featured ? "text-2xl md:text-3xl" : "text-lg"}`}
+        >
           <Link
             to="/artigos/$slug"
             params={{ slug: post.slug }}
@@ -70,7 +74,9 @@ export function PostCard({ post, featured = false }: { post: PostSummary; featur
         ) : null}
 
         <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-          {post.published_at ? <time dateTime={post.published_at}>{formatDate(post.published_at)}</time> : null}
+          {post.published_at ? (
+            <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
+          ) : null}
           {post.reading_minutes ? <span>{post.reading_minutes} min de leitura</span> : null}
         </p>
       </div>

@@ -110,19 +110,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: SITE.name,
-          url: siteUrl("/"),
-          description: SITE.description,
-          inLanguage: "pt-BR",
-        }),
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

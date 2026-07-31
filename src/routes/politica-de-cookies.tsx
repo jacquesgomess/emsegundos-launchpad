@@ -40,7 +40,7 @@ export const Route = createFileRoute("/politica-de-cookies")({
       </p>
       <h2>Dúvidas</h2>
       <p>
-        Fale com a gente em <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        Fale com a gente pelo <a href="/contato">formulário de contato</a>.
       </p>
     </ContentPage>
   ),

@@ -39,8 +39,8 @@ export const Route = createFileRoute("/politica-de-privacidade")({
       </p>
       <h2>Seus direitos</h2>
       <p>
-        Você pode solicitar acesso, correção ou exclusão dos dados enviados. Basta escrever para{" "}
-        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        Você pode solicitar acesso, correção ou exclusão dos dados enviados pelo{" "}
+        <a href="/contato">formulário de contato</a>.
       </p>
       <h2>Alterações</h2>
       <p>

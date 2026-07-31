@@ -168,9 +168,7 @@ export function Markdown({ content }: { content: string }) {
         quote.push(lines[i].trim().replace(/^>\s?/, ""));
         i++;
       }
-      blocks.push(
-        <blockquote key={key++}>{renderInline(quote.join(" "), `q${key}`)}</blockquote>,
-      );
+      blocks.push(<blockquote key={key++}>{renderInline(quote.join(" "), `q${key}`)}</blockquote>);
       continue;
     }
 

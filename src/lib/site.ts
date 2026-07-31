@@ -13,7 +13,6 @@ export const SITE = {
   description:
     "Guias, tutoriais e comparativos para resolver problemas, usar melhor a tecnologia e escolher com mais segurança.",
   locale: "pt_BR",
-  contactEmail: "contato@emsegundos.com",
   series: ["Resolva sem complicação", "Entenda em segundos", "Escolha melhor"] as const,
 };
 

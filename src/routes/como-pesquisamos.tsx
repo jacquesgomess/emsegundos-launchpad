@@ -39,8 +39,8 @@ export const Route = createFileRoute("/como-pesquisamos")({
       </p>
       <h2>Correções</h2>
       <p>
-        Erros acontecem. Se você encontrar uma informação incorreta ou desatualizada, escreva para{" "}
-        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a> e avaliaremos a correção.
+        Erros acontecem. Se você encontrar uma informação incorreta ou desatualizada, envie pelo{" "}
+        <a href="/contato">formulário de contato</a> e avaliaremos a correção.
       </p>
       <h2>Independência editorial</h2>
       <p>
