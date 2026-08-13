@@ -25,7 +25,15 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex shrink-0 items-center" aria-label="EmSegundos, página inicial">
-          <img src={logo} alt="EmSegundos" width={170} height={41} className="h-9 w-auto" />
+          <img
+            src={logo}
+            alt="EmSegundos"
+            width={170}
+            height={41}
+            fetchPriority="high"
+            decoding="async"
+            className="h-9 w-auto"
+          />
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">

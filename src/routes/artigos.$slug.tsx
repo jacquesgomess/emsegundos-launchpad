@@ -190,6 +190,9 @@ function PostPage() {
             width={1200}
             height={675}
             decoding="async"
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 1024px) 100vw, 800px"
             className="mt-8 aspect-[16/9] w-full rounded-2xl object-cover"
           />
         ) : null}
