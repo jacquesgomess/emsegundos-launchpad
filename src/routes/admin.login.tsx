@@ -8,12 +8,12 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/login")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    next:
-      typeof search.next === "string" && search.next.startsWith("/") && !search.next.startsWith("//")
-        ? search.next
-        : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { next?: string } => {
+    const next = search.next;
+    return typeof next === "string" && next.startsWith("/") && !next.startsWith("//")
+      ? { next }
+      : {};
+  },
   component: AdminLogin,
 });
 
