@@ -22,10 +22,12 @@ export function PostCard({ post, featured = false }: { post: PostSummary; featur
           <img
             src={post.cover_image_url}
             alt={post.cover_image_alt ?? ""}
-            width={800}
-            height={450}
-            loading="lazy"
+            width={featured ? 1200 : 800}
+            height={featured ? 675 : 450}
+            loading={featured ? "eager" : "lazy"}
+            fetchPriority={featured ? "high" : "auto"}
             decoding="async"
+            sizes={featured ? "(max-width: 768px) 100vw, 600px" : "(max-width: 768px) 100vw, 400px"}
             className={
               featured ? "h-full w-full object-cover" : "aspect-[16/9] w-full object-cover"
             }
