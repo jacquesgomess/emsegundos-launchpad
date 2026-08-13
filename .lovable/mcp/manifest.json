@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://smkieournklrfsaerfhs.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "emsegundos-launchpad",
+      "version": "0.1.0",
+      "title": "EmSegundos Launchpad"
+    },
+    "tools": [
+      {
+        "name": "list_posts",
+        "title": "Listar artigos",
+        "description": "Lista artigos do blog EmSegundos com filtros de status (rascunho/publicado), busca por título e limite.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ],
+              "description": "Filtrar por status do artigo."
+            },
+            "search": {
+              "type": "string",
+              "maxLength": 120,
+              "description": "Busca por título."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "description": "Máximo de artigos (padrão 20)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_post",
+        "title": "Ver artigo",
+        "description": "Retorna um artigo completo do EmSegundos pelo slug, incluindo conteúdo e SEO.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "Slug do artigo."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_categories",
+        "title": "Listar categorias",
+        "description": "Lista as categorias editoriais do EmSegundos com nome e slug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_draft_post",
+        "title": "Criar rascunho",
+        "description": "Cria um novo artigo como rascunho (nunca publicado) no EmSegundos. Requer conta com função admin.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 200,
+              "description": "Título do artigo."
+            },
+            "slug": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$",
+              "maxLength": 200,
+              "description": "Slug único do artigo."
+            },
+            "excerpt": {
+              "type": "string",
+              "maxLength": 400,
+              "description": "Resumo curto."
+            },
+            "content": {
+              "type": "string",
+              "maxLength": 60000,
+              "description": "Conteúdo em Markdown."
+            },
+            "category_slug": {
+              "type": "string",
+              "maxLength": 80,
+              "description": "Slug da categoria."
+            },
+            "series": {
+              "type": "string",
+              "maxLength": 80,
+              "description": "Série editorial."
+            }
+          },
+          "required": [
+            "title",
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "set_post_status",
+        "title": "Publicar ou despublicar artigo",
+        "description": "Altera o status de um artigo do EmSegundos entre rascunho e publicado. Publicar define a data de publicação quando ela estiver vazia.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "Slug do artigo."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ],
+              "description": "Novo status do artigo."
+            }
+          },
+          "required": [
+            "slug",
+            "status"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_contact_messages",
+        "title": "Listar mensagens de contato",
+        "description": "Lista as mensagens enviadas pelo formulário de contato do EmSegundos. Requer conta com função admin.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "description": "Máximo de mensagens (padrão 20)."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

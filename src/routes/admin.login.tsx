@@ -8,20 +8,32 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/login")({
+  validateSearch: (search: Record<string, unknown>): { next?: string } => {
+    const next = search.next;
+    return typeof next === "string" && next.startsWith("/") && !next.startsWith("//")
+      ? { next }
+      : {};
+  },
   component: AdminLogin,
 });
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/admin" });
+      if (!data.session) return;
+      if (next) {
+        window.location.href = next;
+        return;
+      }
+      navigate({ to: "/admin" });
     });
-  }, [navigate]);
+  }, [navigate, next]);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -30,6 +42,10 @@ function AdminLogin() {
     setLoading(false);
     if (error) {
       toast.error("E-mail ou senha inválidos.");
+      return;
+    }
+    if (next) {
+      window.location.href = next;
       return;
     }
     navigate({ to: "/admin" });
