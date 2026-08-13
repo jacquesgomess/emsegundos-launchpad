@@ -109,7 +109,9 @@ function Index() {
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">{SITE.description}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="brand" size="lg">
-                <Link to="/artigos">Ver soluções</Link>
+                <Link to="/artigos" preload="render">
+                  Ver soluções
+                </Link>
               </Button>
               <Button asChild variant="brandOutline" size="lg">
                 <Link to="/categoria/$slug" params={{ slug: "tecnologia-em-casa" }}>
