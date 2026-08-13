@@ -10,7 +10,15 @@ export function Footer() {
     <footer className="mt-20 bg-brand-navy text-white">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src={logoDark} alt="EmSegundos" width={200} height={48} className="h-10 w-auto" />
+          <img
+            src={logoDark}
+            alt="EmSegundos"
+            width={200}
+            height={48}
+            loading="lazy"
+            decoding="async"
+            className="h-10 w-auto"
+          />
           <p className="mt-4 max-w-sm text-sm text-white/70">{SITE.tagline}</p>
           <p className="mt-2 max-w-sm text-sm text-white/70">{SITE.description}</p>
         </div>
