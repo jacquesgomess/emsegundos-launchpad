@@ -19,7 +19,7 @@
       {
         "name": "list_posts",
         "title": "Listar artigos",
-        "description": "Lista artigos do blog EmSegundos com filtros de status (rascunho/publicado), busca por título e limite.",
+        "description": "Lista artigos do blog EmSegundos com paginação (limit/offset), filtros de status (rascunho/publicado), categoria, intervalo de datas de publicação e busca por título. Retorna total e paginação.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
@@ -41,11 +41,45 @@
               "maxLength": 120,
               "description": "Busca por título."
             },
+            "category_slug": {
+              "type": "string",
+              "maxLength": 80,
+              "description": "Slug da categoria."
+            },
+            "published_from": {
+              "type": "string",
+              "maxLength": 40,
+              "description": "Data mínima de publicação (ISO, ex. 2026-01-01)."
+            },
+            "published_to": {
+              "type": "string",
+              "maxLength": 40,
+              "description": "Data máxima de publicação (ISO, ex. 2026-12-31)."
+            },
+            "order_by": {
+              "type": "string",
+              "enum": [
+                "updated_at",
+                "published_at",
+                "title"
+              ],
+              "description": "Campo de ordenação (padrão updated_at)."
+            },
+            "ascending": {
+              "type": "boolean",
+              "description": "Ordem crescente (padrão false)."
+            },
             "limit": {
               "type": "integer",
               "minimum": 1,
               "maximum": 50,
               "description": "Máximo de artigos (padrão 20)."
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5000,
+              "description": "Quantos artigos pular para paginar (padrão 0)."
             }
           },
           "additionalProperties": false,
