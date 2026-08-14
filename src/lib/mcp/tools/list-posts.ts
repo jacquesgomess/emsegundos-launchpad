@@ -57,6 +57,7 @@ export default defineTool({
     const supabase = supabaseForUser(ctx);
     const take = limit ?? 20;
     const skip = offset ?? 0;
+    let categoryId: string | undefined;
 
     if (category_slug) {
       const { data: category, error: categoryError } = await supabase
@@ -74,7 +75,7 @@ export default defineTool({
           has_more: false,
           note: `Categoria "${category_slug}" não encontrada.`,
         });
-      var categoryId: string | undefined = category.id;
+      categoryId = category.id;
     }
 
     let query = supabase
