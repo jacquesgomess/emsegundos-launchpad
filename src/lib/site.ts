@@ -4,7 +4,7 @@
  * FALLBACK_BASE_URL) and canonical URLs, sitemap, Open Graph and structured
  * data all follow automatically.
  */
-const FALLBACK_BASE_URL = "";
+const FALLBACK_BASE_URL = "https://project--26b1522c-38c7-481e-afc3-831736d43951.lovable.app";
 
 export const SITE = {
   name: "EmSegundos",
