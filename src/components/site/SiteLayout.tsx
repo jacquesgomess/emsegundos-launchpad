@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { CookieConsent } from "./CookieConsent";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -17,6 +18,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
