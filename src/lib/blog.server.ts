@@ -49,3 +49,58 @@ const contactSchema = z.object({
 });
 
 export { listSchema, contactSchema, toSummary };
+
+type ContactInput = z.infer<typeof contactSchema>;
+
+const MAX_MESSAGES_PER_WINDOW = 3;
+const WINDOW_MINUTES = 60;
+
+/** Anonymous, non-reversible origin fingerprint used only for flood control. */
+async function hashOrigin(value: string): Promise<string> {
+  const data = new TextEncoder().encode(`emsegundos:${value}`);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .slice(0, 32);
+}
+
+/**
+ * Stores a contact message server-side with a per-origin rate limit.
+ * Writes go through the admin client, so visitors have no direct table access.
+ */
+export async function storeContactMessage(data: ContactInput): Promise<{ ok: true }> {
+  const { getRequest, getRequestIP } = await import("@tanstack/react-start/server");
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+  const request = getRequest();
+  const ip =
+    getRequestIP({ xForwardedFor: true }) ??
+    request.headers.get("cf-connecting-ip") ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+  const ipHash = await hashOrigin(ip);
+
+  const since = new Date(Date.now() - WINDOW_MINUTES * 60_000).toISOString();
+  const { count } = await supabaseAdmin
+    .from("contact_messages")
+    .select("id", { count: "exact", head: true })
+    .eq("ip_hash", ipHash)
+    .gte("created_at", since);
+
+  if ((count ?? 0) >= MAX_MESSAGES_PER_WINDOW) {
+    throw new Error(
+      "Você já enviou várias mensagens recentemente. Tente novamente em cerca de uma hora.",
+    );
+  }
+
+  const { error } = await supabaseAdmin.from("contact_messages").insert({
+    name: data.name,
+    email: data.email,
+    subject: data.subject,
+    message: data.message,
+    ip_hash: ipHash,
+  });
+  if (error) throw new Error("Não foi possível enviar a mensagem. Tente novamente.");
+  return { ok: true };
+}

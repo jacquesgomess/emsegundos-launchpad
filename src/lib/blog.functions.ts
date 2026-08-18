@@ -1,7 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-import { publicClient, listSchema, contactSchema, toSummary } from "./blog.server";
+import {
+  publicClient,
+  listSchema,
+  contactSchema,
+  toSummary,
+  storeContactMessage,
+} from "./blog.server";
 import {
   DETAIL_COLUMNS,
   SUMMARY_COLUMNS,
@@ -147,13 +153,5 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     if (typeof data.elapsedMs === "number" && data.elapsedMs < 2500) {
       throw new Error("Envio muito rápido. Tente novamente em alguns segundos.");
     }
-    const supabase = publicClient();
-    const { error } = await supabase.from("contact_messages").insert({
-      name: data.name,
-      email: data.email,
-      subject: data.subject,
-      message: data.message,
-    });
-    if (error) throw new Error("Não foi possível enviar a mensagem. Tente novamente.");
-    return { ok: true };
+    return storeContactMessage(data);
   });

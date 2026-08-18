@@ -4,6 +4,14 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/$")({
+  // Real 404 status: crawlers must not treat missing pages as valid content.
+  loader: async () => {
+    if (import.meta.env.SSR) {
+      const { setResponseStatus } = await import("@tanstack/react-start/server");
+      setResponseStatus(404);
+    }
+    return null;
+  },
   head: () => ({
     meta: [
       { title: `Página não encontrada — ${SITE.name}` },
