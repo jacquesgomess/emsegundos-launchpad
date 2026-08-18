@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public.keep_single_featured_post() FROM anon, authenticated, public;
