@@ -27,11 +27,10 @@ export const Route = createFileRoute("/sitemap.xml")({
         const { publicClient } = await import("@/lib/blog.server");
         const supabase = publicClient();
         // Canonical host first, so sitemap URLs always match <link rel="canonical">.
-        const base = (
-          process.env.SITE_URL ||
-          getBaseUrl() ||
-          new URL(request.url).origin
-        ).replace(/\/$/, "");
+        const base = (process.env.SITE_URL || getBaseUrl() || new URL(request.url).origin).replace(
+          /\/$/,
+          "",
+        );
 
         const [{ data: posts }, { data: categories }] = await Promise.all([
           supabase
