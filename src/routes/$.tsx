@@ -1,17 +1,12 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/$")({
   // Real 404 status: crawlers must not treat missing pages as valid content.
-  loader: async () => {
-    if (import.meta.env.SSR) {
-      const { setResponseStatus } = await import("@tanstack/react-start/server");
-      setResponseStatus(404);
-      console.log("[404] setResponseStatus called");
-    }
-    return null;
+  loader: () => {
+    throw notFound();
   },
   head: () => ({
     meta: [
