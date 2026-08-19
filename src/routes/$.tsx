@@ -9,6 +9,7 @@ export const Route = createFileRoute("/$")({
     if (import.meta.env.SSR) {
       const { setResponseStatus } = await import("@tanstack/react-start/server");
       setResponseStatus(404);
+      console.log("[404] setResponseStatus called");
     }
     return null;
   },
