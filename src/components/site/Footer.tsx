@@ -103,6 +103,14 @@ export function Footer() {
                 Aviso de afiliados
               </Link>
             </li>
+            <li>
+              <Link
+                to="/termos-de-uso"
+                className="text-white/80 underline-offset-4 hover:text-white hover:underline"
+              >
+                Termos de uso
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
