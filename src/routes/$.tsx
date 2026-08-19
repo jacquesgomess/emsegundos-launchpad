@@ -16,6 +16,7 @@ export const Route = createFileRoute("/$")({
     ],
   }),
   component: NotFoundPage,
+  notFoundComponent: NotFoundBoundary,
 });
 
 function NotFoundBoundary() {
