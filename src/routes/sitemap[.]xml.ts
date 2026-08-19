@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { getBaseUrl } from "@/lib/site";
+
 const STATIC_PATHS = [
   "/",
   "/artigos",
@@ -9,6 +11,7 @@ const STATIC_PATHS = [
   "/politica-de-privacidade",
   "/politica-de-cookies",
   "/aviso-de-afiliados",
+  "/termos-de-uso",
 ];
 
 function escapeXml(value: string) {
@@ -23,7 +26,11 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async ({ request }) => {
         const { publicClient } = await import("@/lib/blog.server");
         const supabase = publicClient();
-        const base = (process.env.SITE_URL ?? new URL(request.url).origin).replace(/\/$/, "");
+        // Canonical host first, so sitemap URLs always match <link rel="canonical">.
+        const base = (process.env.SITE_URL || getBaseUrl() || new URL(request.url).origin).replace(
+          /\/$/,
+          "",
+        );
 
         const [{ data: posts }, { data: categories }] = await Promise.all([
           supabase

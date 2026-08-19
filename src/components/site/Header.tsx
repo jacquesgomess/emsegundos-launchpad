@@ -39,7 +39,7 @@ export function Header() {
         <nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
-              key={item.to}
+              key={item.label}
               to={item.to}
               params={"params" in item ? item.params : undefined}
               activeOptions={{ exact: "exact" in item ? item.exact : false }}
@@ -75,7 +75,7 @@ export function Header() {
           >
             {NAV.map((item) => (
               <Link
-                key={item.to}
+                key={item.label}
                 to={item.to}
                 params={"params" in item ? item.params : undefined}
                 onClick={() => setOpen(false)}

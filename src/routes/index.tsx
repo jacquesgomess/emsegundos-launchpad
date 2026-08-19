@@ -2,6 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BookOpenCheck, ClipboardCheck, Compass, Wrench } from "lucide-react";
 
 import { PostCard } from "@/components/site/PostCard";
+import ogHome from "@/assets/og-home.jpg";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { listCategories, listPublishedPosts } from "@/lib/blog.functions";
@@ -50,6 +51,9 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: SITE.description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: siteUrl("/") },
+      { property: "og:image", content: siteUrl(ogHome) },
+      { property: "og:image:alt", content: `${SITE.name} — ${SITE.tagline}` },
+      { name: "twitter:image", content: siteUrl(ogHome) },
     ],
     links: [{ rel: "canonical", href: siteUrl("/") }],
     scripts: [

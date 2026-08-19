@@ -35,6 +35,7 @@ export const LEGAL_PAGES = [
   { to: "/politica-de-privacidade", label: "Política de privacidade" },
   { to: "/politica-de-cookies", label: "Política de cookies" },
   { to: "/aviso-de-afiliados", label: "Aviso de afiliados" },
+  { to: "/termos-de-uso", label: "Termos de uso" },
 ] as const;
 
 export const CATEGORY_LINKS = [
