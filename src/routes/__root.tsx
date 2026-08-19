@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import "@fontsource-variable/manrope";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE, siteUrl } from "@/lib/site";
 import { SiteLayout } from "@/components/site/SiteLayout";
