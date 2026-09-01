@@ -245,3 +245,27 @@ export function youtubeId(url?: string | null): string | null {
     return null;
   }
 }
+
+/**
+ * Divide o conteúdo em duas partes num limite de H2 próximo ao meio, para
+ * inserir um espaço de anúncio sem cortar frases. Sem H2 suficiente, devolve
+ * o conteúdo inteiro na primeira parte.
+ */
+export function splitAtMiddleHeading(markdown: string): [string, string] {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const middle = lines.length / 2;
+  let inFence = false;
+  let best = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const t = lines[i].trim();
+    if (t.startsWith("```")) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    if (!/^##\s+/.test(t)) continue;
+    if (best === -1 || Math.abs(i - middle) < Math.abs(best - middle)) best = i;
+  }
+  if (best <= 0 || best >= lines.length - 3) return [markdown, ""];
+  return [lines.slice(0, best).join("\n"), lines.slice(best).join("\n")];
+}
