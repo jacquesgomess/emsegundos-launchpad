@@ -121,10 +121,18 @@ export function Markdown({ content }: { content: string }) {
     }
 
     if (trimmed.startsWith("```")) {
+      const info = trimmed.slice(3).trim().toLowerCase();
       const code: string[] = [];
       i++;
       while (i < lines.length && !lines[i].trim().startsWith("```")) code.push(lines[i++]);
       i++;
+      if (info === "afiliado" || info === "afiliados") {
+        const pick = parseAffiliatePick(code.join("\n"));
+        if (pick) {
+          blocks.push(<AffiliatePick key={key++} data={pick} />);
+          continue;
+        }
+      }
       blocks.push(
         <pre key={key++}>
           <code>{code.join("\n")}</code>
