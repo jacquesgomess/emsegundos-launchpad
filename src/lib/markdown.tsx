@@ -1,5 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 
+import { AffiliatePick, parseAffiliatePick } from "@/components/site/AffiliatePick";
+
 export type Heading = { id: string; text: string; level: 2 | 3 };
 
 export function slugifyHeading(text: string): string {
