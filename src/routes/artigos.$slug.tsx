@@ -133,6 +133,7 @@ function PostPage() {
   const headings = extractHeadings(post.content);
   const video = youtubeId(post.youtube_url);
   const shareUrl = siteUrl(`/artigos/${post.slug}`);
+  const [contentTop, contentRest] = splitAtMiddleHeading(post.content);
 
   return (
     <SiteLayout>
