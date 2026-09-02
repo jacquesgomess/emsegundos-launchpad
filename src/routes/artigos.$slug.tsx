@@ -1,11 +1,12 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 
+import { AdSlot } from "@/components/site/AdSlot";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { PostCard } from "@/components/site/PostCard";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { getPublishedPost } from "@/lib/blog.functions";
 import { formatDate, type PostDetail, type PostSummary } from "@/lib/blog.types";
-import { Markdown, extractHeadings, youtubeId } from "@/lib/markdown";
+import { Markdown, extractHeadings, splitAtMiddleHeading, youtubeId } from "@/lib/markdown";
 import { SITE, siteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/artigos/$slug")({
