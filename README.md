@@ -14,14 +14,15 @@ Tom: claro, prático, acessível, confiável e didático. Evite exageros comerci
 IDENTIDADE VISUAL
 Use os logotipos e o favicon que anexei. Não redesenhe nem substitua a marca.
 Paleta:
+
 - Azul Confiança: #14263D
 - Turquesa Solução: #12A89D
 - Turquesa Claro: #2DD4BF
 - Laranja Ação: #F28A50
 - Creme Casa: #F6F3EB
 - Cinza Apoio: #526175
-Tipografia: Manrope. Use 800 nos títulos, 700 em subtítulos e botões e 400 no corpo.
-Crie uma interface editorial moderna, limpa e acolhedora. Use fundo creme, áreas brancas e azul-marinho. Reserve o laranja para ações e destaques. Evite excesso de gradientes, sombras, animações, carrosséis e aparência genérica de startup.
+  Tipografia: Manrope. Use 800 nos títulos, 700 em subtítulos e botões e 400 no corpo.
+  Crie uma interface editorial moderna, limpa e acolhedora. Use fundo creme, áreas brancas e azul-marinho. Reserve o laranja para ações e destaques. Evite excesso de gradientes, sombras, animações, carrosséis e aparência genérica de startup.
 
 ARQUITETURA
 Use o backend integrado do Lovable para banco de dados, autenticação e armazenamento de imagens. Não conecte serviços externos nesta primeira versão.
@@ -29,6 +30,7 @@ O conteúdo público deve ser rastreável por mecanismos de busca. O painel admi
 
 PÁGINAS PÚBLICAS
 Crie:
+
 1. /
 2. /artigos
 3. /categoria/[slug]
@@ -47,6 +49,7 @@ Não exiba o painel administrativo no menu público.
 
 HOME
 Crie:
+
 - cabeçalho com o logotipo anexado, menu responsivo e botão “Ver artigos”;
 - hero com o título “Soluções práticas para sua casa e sua vida digital.”;
 - texto “Guias, tutoriais e comparativos para resolver problemas, usar melhor a tecnologia e escolher com mais segurança.”;
@@ -60,12 +63,14 @@ Crie:
 
 CATEGORIAS
 Cadastre:
+
 1. Casa Prática — slug casa-pratica
 2. Tecnologia em Casa — slug tecnologia-em-casa
 3. Vida Digital — slug vida-digital
 
 ARTIGOS
 Cada artigo deve aceitar:
+
 - título;
 - slug exclusivo;
 - resumo;
@@ -89,6 +94,7 @@ Cada artigo deve aceitar:
 - artigos relacionados.
 
 Cadastre como RASCUNHOS, sem lorem ipsum e sem publicar conteúdo incompleto:
+
 1. “Wi-Fi fraco em casa? 8 formas de melhorar o sinal antes de gastar”
    slug: wifi-fraco-como-melhorar-o-sinal
    categoria: Tecnologia em Casa
@@ -114,6 +120,7 @@ Em /artigos, crie busca, filtro por categoria e cards com imagem, categoria, tí
 
 PAINEL ADMINISTRATIVO
 Crie:
+
 - /admin/login
 - /admin
 - dashboard com contagem de publicados, rascunhos e categorias;
@@ -127,6 +134,7 @@ Crie:
 - lista das mensagens do formulário de contato.
 
 SEGURANÇA
+
 - Não ofereça cadastro público.
 - Proteja as rotas administrativas.
 - Aplique regras de acesso no banco, não apenas validações na interface.
@@ -141,6 +149,7 @@ Posts precisam suportar os campos editoriais e de SEO descritos acima. Fontes de
 
 SEO E AEO
 Implemente:
+
 - HTML semântico e conteúdo público rastreável;
 - metadados únicos;
 - canonical;
@@ -157,7 +166,7 @@ Implemente:
 - links internos;
 - página 404;
 - noindex para admin, login, rascunhos e prévias.
-Use uma configuração central de URL-base para que canonical, sitemap, Open Graph e dados estruturados passem a usar o domínio definitivo quando ele for conectado.
+  Use uma configuração central de URL-base para que canonical, sitemap, Open Graph e dados estruturados passem a usar o domínio definitivo quando ele for conectado.
 
 ACESSIBILIDADE E DESEMPENHO
 Priorize celular, sem rolagem horizontal. Garanta navegação por teclado, foco visível, contraste, rótulos de formulário, hierarquia de títulos e respeito a movimento reduzido.
@@ -171,6 +180,7 @@ NÃO IMPLEMENTAR AGORA
 Comentários, cadastro público, área de membros, loja, pagamentos, comparador automatizado, newsletter complexa, anúncios, geração automática de artigos, tradução e aplicativo móvel.
 
 CRITÉRIOS DE CONCLUSÃO
+
 - Nenhuma página com lorem ipsum.
 - Nenhum botão sem ação.
 - Nenhum link quebrado.
@@ -186,12 +196,13 @@ CRITÉRIOS DE CONCLUSÃO
 - Sem dados, métricas ou avaliações inventadas.
 
 Implemente agora a fundação completa. Antes de encerrar, teste os fluxos principais e me entregue um resumo com:
+
 1. o que foi criado;
 2. tabelas e regras de acesso;
 3. como criar ou definir o primeiro administrador;
 4. quais campos ainda precisam de conteúdo real;
 5. o que devo testar antes de publicar.
-Só faça perguntas se existir um bloqueio real que impeça a construção.
+   Só faça perguntas se existir um bloqueio real que impeça a construção.
 
 This project was built with [Lovable](https://lovable.dev).
 

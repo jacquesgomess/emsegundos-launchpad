@@ -17,21 +17,25 @@ Estado verificado agora: os itens críticos e altos da auditoria (soft 404, prot
 ## Plano em 4 etapas
 
 **Etapa 1 — Ir ao ar (hoje)**
+
 - Publicar o site.
 - Conectar o domínio e trocar a URL-base central + `Sitemap:` do `robots.txt`.
 - Adicionar a meta de verificação do Search Console e enviar o sitemap.
 - Ativar GA4 opcional já atrelado ao consentimento (só precisa do ID de medição).
 
 **Etapa 2 — Estrutura para monetizar (sem anúncio ativo)**
+
 - Componente de slot de anúncio com altura reservada (topo do artigo, meio do conteúdo, rodapé da listagem), vazio até haver rede aprovada — evita deslocamento de layout depois.
 - Bloco de recomendação de afiliado em Markdown (produto, motivo, botão) com `rel="sponsored nofollow noopener"` e o aviso de afiliados acima do primeiro link.
 
 **Etapa 3 — Conteúdo até o volume de aprovação**
+
 - Plano editorial de 15–25 artigos: pelo menos 5 em Casa Prática e 5 em Vida Digital, o resto ampliando Tecnologia em Casa para além de Wi-Fi.
 - Links internos entre artigos da mesma categoria e texto introdutório próprio em cada página de categoria.
 - Somente depois disso solicitar AdSense.
 
 **Etapa 4 — Refino**
+
 - RSS, página de série editorial, `Cache-Control` nas rotas de conteúdo.
 - `bunx prettier --write .` para zerar o ruído de lint.
 
