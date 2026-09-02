@@ -221,9 +221,17 @@ function PostPage() {
           </p>
         ) : null}
 
+        <AdSlot placement="article-top" className="mt-8" />
+
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-start">
           <div className="article-prose min-w-0">
-            <Markdown content={post.content} />
+            <Markdown content={contentTop} />
+            {contentRest ? (
+              <>
+                <AdSlot placement="article-mid" className="my-8" />
+                <Markdown content={contentRest} />
+              </>
+            ) : null}
           </div>
 
           {headings.length > 1 ? (
