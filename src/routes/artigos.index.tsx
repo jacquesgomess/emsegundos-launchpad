@@ -2,6 +2,7 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { AdSlot } from "@/components/site/AdSlot";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { PostCard } from "@/components/site/PostCard";
 import { PageHeader, SiteLayout } from "@/components/site/SiteLayout";
@@ -206,6 +207,8 @@ function ArtigosPage() {
             ) : null}
           </div>
         )}
+
+        <AdSlot placement="list-footer" className="mt-12" />
       </div>
     </SiteLayout>
   );
