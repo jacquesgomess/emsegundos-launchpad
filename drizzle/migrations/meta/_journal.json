@@ -8,6 +8,13 @@
       "when": 1789657027759,
       "tag": "0000_seed_posts_lote1",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789657122415,
+      "tag": "0001_seed_posts_lote2",
+      "breakpoints": true
     }
   ]
 }
