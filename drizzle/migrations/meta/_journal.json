@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789657027759,
+      "tag": "0000_seed_posts_lote1",
+      "breakpoints": true
+    }
+  ]
+}
