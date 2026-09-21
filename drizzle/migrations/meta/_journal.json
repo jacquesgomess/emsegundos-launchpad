@@ -15,6 +15,13 @@
       "when": 1789657122415,
       "tag": "0001_seed_posts_lote2",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790007168325,
+      "tag": "0002_seed_posts_lote3",
+      "breakpoints": true
     }
   ]
 }
